@@ -239,3 +239,164 @@ color: #f15a24;
 .schedule-scroll .schedule-table .item{
     height: 45px;
 }
+/*Layout3*/
+#layout7 {
+    margin-left: 2px;
+    font-size: 12px;
+}
+#layout7 .thanhDuoi {
+    width: 100%;
+    height: 270px;
+    background: #524FEC;
+    margin-top: 50px;
+    color: #fff;
+}
+
+#layout7 .thanhDuoi .tenWeb {
+    margin-left: 30px;
+    float: left;
+    clear: right;
+    width: 300px;
+    margin-right: 70px;
+}
+
+#layout7 .thanhDuoi .tenWeb .hotline .fa-phone-square {
+    float: left;
+    clear: right;
+    font-size: 200%;
+    margin-right: 10px;
+}
+
+#layout7 .thanhDuoi .tenWeb .hotline a {
+    color: black;
+}
+
+#layout7 .thanhDuoi .tenWeb .hotline .fa-phone-square:hover {
+    color: white;
+    cursor: pointer;
+}
+
+#layout7 .thanhDuoi .tenWeb .hotline .line {
+    font-size: 150%;
+    color: white;
+}
+
+#layout7 .thanhDuoi .thongTin {
+    float: left;
+    clear: right;
+    margin-right: 50px;
+}
+
+#layout7 .thanhDuoi .thongTin .right .fa {
+    float: left;
+    clear: right;
+    margin-right: 10px;
+}
+
+#layout7 .thanhDuoi .thongTin .right .noiDung {
+    margin-left: 20px;
+}
+
+#layout7 .thanhDuoi .NoiDung .hoTro .chucNang {
+    float: left;
+    clear: right;
+    margin-right: 100px;
+}
+
+#layout7 .thanhDuoi .NoiDung .hoTro .chucNang a {
+    color: #fff;
+    text-decoration: none;
+}
+
+#layout7 .thanhDuoi .NoiDung .hoTro .chucNang a:hover {
+    color: white;
+    cursor: pointer;
+}
+
+#layout7 .thanhDuoi .NoiDung .lienLac .lienLac_left {
+    float: left;
+    clear: right;
+    margin-top: 220px;
+}
+
+#layout7 .thanhDuoi .NoiDung .lienLac .lienLac_left .left {
+    margin-top: -200px;
+    float: left;
+    clear: right;
+    margin-left: -782px;
+}
+
+#layout7 .thanhDuoi .NoiDung .lienLac .lienLac_left .left .mang {
+    border-radius: 100px;
+    margin-right: 10px;
+    width: 35px;
+    height: 35px;
+}
+
+#layout7 .thanhDuoi .NoiDung .lienLac .lienLac_left .left .mang:hover {
+    cursor: pointer;
+    color: white;
+}
+
+#layout7 .thanhDuoi .NoiDung .lienLac .lienLac_left .right {
+    margin-top: -130px;
+    float: left;
+    clear: right;
+    margin-left: -782px;
+
+}
+
+#layout7 .thanhDuoi .NoiDung .lienLac .lienLac_left .right .mang {
+    border-radius: 5px;
+    margin-right: 10px;
+    width: 35px;
+    height: 35px;
+}
+
+#layout7 .thanhDuoi .NoiDung .lienLac .lienLac_left .right .mang:hover {
+    cursor: pointer;
+    color: white;
+}
+
+#layout7 .thanhDuoi .NoiDung .lienLac .lienLac_right .nhanTin {
+    float: left;
+    clear: right;
+    margin-right: 30px;
+    margin-left: 200px;
+    margin-top: 50px;
+}
+
+#layout7 .thanhDuoi .NoiDung .lienLac .lienLac_right .from .email {
+    float: left;
+    clear: right;
+    width: 400px;
+    height: 50px;
+    background: white;
+    margin-top: 100px;
+    border-radius: 10px;
+    margin-left: -310px;
+}
+
+#layout7 .thanhDuoi .NoiDung .lienLac .lienLac_right .from .fromDangKi {
+    float: left;
+    clear: right;
+    width: 120px;
+    height: 50px;
+    background: white;
+    color: black;
+    margin-top: -55px;
+    border-radius: 10px;
+    margin-left: 1280px;
+    font-size: 190%;
+    border: 1px solid black;
+}
+
+#layout7 .thanhDuoi .NoiDung .lienLac .lienLac_right .from .fromDangKi:hover {
+    background: lightsalmon;
+    color: white;
+}
+
+#layout7 .thanhDuoi .NoiDung .lienLac .lienLac_right .from .fromDangKi .dangKi {
+    margin-top: 8px;
+    margin-left: 15px;
+}
