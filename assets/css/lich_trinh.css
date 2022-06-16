@@ -175,6 +175,7 @@ margin-left: 12%;
     overflow: scroll;
     display: flex;
     justify-content: center;
+    margin-top: 16px;
 }
 .schedule-table {
     max-width: 936px;
@@ -193,8 +194,10 @@ margin-left: 12%;
     width: 100%;
     height: 42px;
     border-radius: 8px;
-    border: 1px solid #d5d5d5;
+    border: 2px solid #d5d5d5;
     background-color: #f6f6f6;
+    font-size: 18px;
+
 }
 .schedule-container .table-head th {
     height: 16px;
@@ -202,4 +205,37 @@ margin-left: 12%;
     font-weight: 700;
     color: #141414;
     padding-left: 24px;
+}
+.schedule-scroll .schedule-table .group-table {
+    width: 100%;
+    border: 1px solid #000;
+}
+.schedule-scroll .schedule-table th {
+
+    text-align: left;
+}
+.schedule-scroll .schedule-table td {
+    text-align: left;
+}
+.schedule-scroll .schedule-table thead {
+    font-size: 18px;
+}
+.schedule-scroll .schedule-table .title{
+    color: orangered;
+}
+.schedule-scroll .schedule-table .time-detail{
+    color: green;
+}
+.schedule-scroll .schedule-table .title{
+font-family: SFProText;
+font-size: 16px;
+font-weight: 600;
+font-stretch: normal;
+font-style: normal;
+line-height: normal;
+letter-spacing: normal;
+color: #f15a24;
+}
+.schedule-scroll .schedule-table .item{
+    height: 45px;
 }
