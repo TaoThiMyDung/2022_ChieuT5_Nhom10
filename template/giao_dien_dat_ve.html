@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chọn chổ ngồi</title>
+    <link
+      rel="stylesheet"
+      href="./assets/libs/fontawesome-free-6.1.1-web/css/all.css"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <header id="header">
+      <a class="header_left" href="#">
+        <img src="./assets/images/bus-school.png" alt="bus-school.png" />
+        <h3>VeXeGia.com</h3>
+      </a>
+      <ul class="header_center">
+        <li class="my-hover"><a href="#">Trang chủ</a></li>
+        <li class="my-hover"><a href="#">Tìm tuyến xe</a></li>
+      </ul>
+      <div class="header_right">
+        <a class="header_right-item login my-hover" href="#">
+          <i class="fa-regular fa-circle-user"></i>
+          <p>Login</p>
+        </a>
+        <a class="header_right-item sign-up my-hover" href="#">
+          <i class="fa-solid fa-user-plus"></i>
+          <p>Sign up</p>
+        </a>
+      </div>
+    </header>
+    <div id="content">
+      <div class="process-book-ticket">
+        <div class="step-process step-1 active">
+          <h1>Kiểm tra vé</h1>
+          <div class="step-num">1</div>
+        </div>
+        <div class="step-process step-2">
+          <h1>Chọn điểm đón / điểm trả</h1>
+          <div class="step-num">2</div>
+        </div>
+        <div class="step-process step-3">
+          <h1>Điền thông tin</h1>
+          <div class="step-num">3</div>
+        </div>
+        <div class="process-bar"></div>
+      </div>
+      <div id="step-1" class="step show">
+        <h1 class="step-title">Các vé đã chọn</h1>
+        <div class="step-content">
+          <div class="ticket">
+            <p>Mã vé: VE2</p>
+            <p>Điểm đi: TP.HCM</p>
+            <p>Điểm đến: Tiền Giang</p>
+            <p>Loại xe: Ghế</p>
+            <p>Vị trí: Ghế số 2</p>
+            <p>Ngày khởi hành: 13/06/2022</p>
+            <p>Giờ khởi hành: 09:30</p>
+            <p>Giá vé: 80.000 VNĐ</p>
+          </div>
+          <div class="ticket">
+            <p>Mã vé: VE2</p>
+            <p>Điểm đi: TP.HCM</p>
+            <p>Điểm đến: Tiền Giang</p>
+            <p>Loại xe: Ghế</p>
+            <p>Vị trí: Ghế số 2</p>
+            <p>Ngày khởi hành: 13/06/2022</p>
+            <p>Giờ khởi hành: 09:30</p>
+            <p>Giá vé: 80.000 VNĐ</p>
+          </div>
+          <div class="ticket">
+            <p>Mã vé: VE2</p>
+            <p>Điểm đi: TP.HCM</p>
+            <p>Điểm đến: Tiền Giang</p>
+            <p>Loại xe: Ghế</p>
+            <p>Vị trí: Ghế số 2</p>
+            <p>Ngày khởi hành: 13/06/2022</p>
+            <p>Giờ khởi hành: 09:30</p>
+            <p>Giá vé: 80.000 VNĐ</p>
+          </div>
+          <div class="ticket">
+            <p>Mã vé: VE2</p>
+            <p>Điểm đi: TP.HCM</p>
+            <p>Điểm đến: Tiền Giang</p>
+            <p>Loại xe: Ghế</p>
+            <p>Vị trí: Ghế số 2</p>
+            <p>Ngày khởi hành: 13/06/2022</p>
+            <p>Giờ khởi hành: 09:30</p>
+            <p>Giá vé: 80.000 VNĐ</p>
+          </div>
+          <div class="ticket">
+            <p>Mã vé: VE2</p>
+            <p>Điểm đi: TP.HCM</p>
+            <p>Điểm đến: Tiền Giang</p>
+            <p>Loại xe: Ghế</p>
+            <p>Vị trí: Ghế số 2</p>
+            <p>Ngày khởi hành: 13/06/2022</p>
+            <p>Giờ khởi hành: 09:30</p>
+            <p>Giá vé: 80.000 VNĐ</p>
+          </div>
+        </div>
+        <div class="step-actions">
+          <a href="#"><div class="btn btn-back my-hover">Quay lại</div></a>
+          <div class="total-price">Tổng: 350.000 VNĐ</div>
+          <div class="btn btn-continue my-hover">Tiếp tục</div>
+        </div>
+      </div>
+      <div id="step-2" class="step">
+        <div class="step-content">
+          <div class="palce-point">
+            <label for="pick-up">Chọn điểm đón</label>
+            <select name="pick-up" id="pick-up">
+              <option value="">Bến xe Hồng Hoàng</option>
+            </select>
+          </div>
+          <div class="palce-point">
+            <label for="drop-off">Chọn điểm trả</label>
+            <select name="drop-off" id="drop-off">
+              <option value="">Bệnh viện MPT</option>
+            </select>
+          </div>
+        </div>
+        <div class="step-actions">
+          <div class="btn btn-back my-hover">Quay lại</div>
+          <div class="btn btn-continue my-hover">Tiếp tục</div>
+        </div>
+      </div>
+      <div id="step-3" class="step">
+        <h1 class="step-title">Điền thông tin khách hàng</h1>
+        <div class="step-content">
+          <form action="">
+            <div class="form-group">
+              <label for="full-name">Họ tên</label>
+              <input id="full-name" type="text">
+              <p class="form-error"></p>
+            </div>
+            <div class="form-group">
+              <label for="phone">Số điện thoại</label>
+              <input id="phone" type="text">
+              <p class="form-error"></p>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input id="email" type="text">
+              <p class="form-error"></p>
+            </div>
+            <div class="form-group">
+              <label for="address">Địa chỉ</label>
+              <input id="address" type="text">
+              <p class="form-error"></p>
+            </div>
+          </form>
+        </div>
+        <div class="step-actions">
+          <div class="btn btn-back my-hover">Quay lại</div>
+
+          <a href="./giao_dien_thong_tin_mua_ve.html" class="btn btn-payment my-hover">Thanh toán</a>
+        </div>
+      </div>
+    </div>
+    <div id="footer">Footer</div>
+    <script src="./assets/js/main.js"></script>
+  </body>
+</html>
