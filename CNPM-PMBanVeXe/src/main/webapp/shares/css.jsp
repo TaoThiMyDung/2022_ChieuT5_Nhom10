@@ -4,3 +4,4 @@
         href='<c:url value="/assets/libs/fontawesome-free-6.1.1-web/css/all.css"/>'
 />
 <link rel="stylesheet" href='<c:url value="/assets/css/style.css"/>'/>
+<link rel="stylesheet" href='<c:url value="/assets/css/lich_trinh.css"/>'/>

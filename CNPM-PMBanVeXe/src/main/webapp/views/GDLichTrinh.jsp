@@ -7,8 +7,8 @@
 <body>
 <div class="khungtrang">
     <i class="fa fa-chevron-circle-left" aria-hidden="true" onclick="zoomountLeft(this)" alt="image"></i>
-    <img id="trangKhung" src='<c:url value="/assets/images/chuyenxe.png"/>'/>
-    <img id="trangKhung1" src='<c:url value="/assets/images/tet-post-12-752x440.png"/>'/>
+    <img id="trangKhung" src='<c:url value="/assets/images/chuyenxe.png" />'/>
+    <img id="trangKhung1" src='<c:url value="/assets/images/tet-post-12-752x440.png" />'/>
     <i class="fa fa-chevron-circle-right" aria-hidden="true" onclick="zoomountRight(this)" alt="image"></i>
 </div>
 
@@ -325,7 +325,7 @@
             <h1 class="ten">VeXeGia</h1>
             <p class="kinhNghiem">Vé xe chất lượng, đặt vé an toàn </p>
             <div class="hotline">
-                <a href='<c:url value="/assets/images/img.png"/>'>
+                <a href='<c:url value="/assets/images/img.png" />'>
                     <i class="fa fa-phone-square" aria-hidden="true"></i></a>
                 <p class="line">1900.363.079</p>
             </div>
@@ -393,21 +393,21 @@
                         <a href="https://www.google.com/search?q=fb&oq=fb&aqs=chrome..69i57j46i131i199i433i465i512j69i59j0i512j46i199i291i433i512j69i60l3.1291j0j7&sourceid=chrome&ie=UTF-8">
                             <img class="mang" src='<c:url value="/assets/images/fb_left.PNG"/>'/></a>
                         <a href="https://www.google.com/search?q=google&oq=goo&aqs=chrome.0.0i131i355i433i512j46i131i199i433i465i512j0i131i433i512j69i57j69i60l3j69i65.1245j0j9&sourceid=chrome&ie=UTF-8">
-                            <img class="mang" src='<c:url value="/assets/images/g_left.PNG"/>'/></a>
+                            <img class="mang" src='<c:url value="/assets/images/g_left.PNG" />'/></a>
                         <a href="https://www.google.com/search?gs_ssp=eJzj4tLP1TfIyDMsS05XYDRgdGDwYi8pzywpSS0CAFnOB00&q=twitter&oq=tw&aqs=chrome.1.69i57j46i131i199i433i465i512j0i433i512j46i131i433i512j0i131i433i512j46i433i512j0i131i433i512j69i60.3261j0j9&sourceid=chrome&ie=UTF-8">
-                            <img class="mang" src='<c:url value="/assets/images/tw_left.PNG"/>'/></a>
+                            <img class="mang" src='<c:url value="/assets/images/tw_left.PNG" />'/></a>
                         <a href="https://www.google.com/search?q=pinterest&oq=p&aqs=chrome.3.69i59l2j69i57j0i131i433i512j69i60l4.10676j0j9&sourceid=chrome&ie=UTF-8">
-                            <img class="mang" src='<c:url value="/assets/images/p_left.PNG"/>'/></a>
+                            <img class="mang" src='<c:url value="/assets/images/p_left.PNG" />'/></a>
                     </div>
                     <div class="right">
                         <h3>Thanh Toán</h3>
                         <a href="https://www.google.com/search?q=visa&oq=visa&aqs=chrome..69i57j0i433i512l2j0i512l2j0i131i433i512j0i512l2j0i10i512j0i512.2103j0j9&sourceid=chrome&ie=UTF-8">
-                            <img class="mang" src='<c:url value="/assets/images/thanhToan1.PNG"/>' height="43" width="62"/></a>
-                        <img class="mang" src='<c:url value="/assets/images/thanhToan2.PNG"/>' height="44" width="65"/>
+                            <img class="mang" src='<c:url value="/assets/images/thanhToan1.PNG" />' height="43" width="62"/></a>
+                        <img class="mang" src='<c:url value="/assets/images/thanhToan2.PNG" />' height="44" width="65"/>
                         <a href="https://www.google.com/search?q=paypal&oq=paypal&aqs=chrome..69i57j46i199i433i465i512j0i433i512j0i512l6.3397j0j9&sourceid=chrome&ie=UTF-8">
-                            <img class="mang" src='<c:url value="/assets/images/thanhToan3.PNG"/>' height="40" width="64"/></a>
+                            <img class="mang" src='<c:url value="/assets/images/thanhToan3.PNG" />' height="40" width="64"/></a>
                         <a href="https://www.google.com/search?q=jcb&oq=jcb&aqs=chrome..69i57j46i199i433i465i512j0i512l6j0i10i512j0i512.1389j0j9&sourceid=chrome&ie=UTF-8">
-                            <img class="mang" src='<c:url value="/assets/images/thanhToan4.PNG"/>' height="38" width="62"/></a>
+                            <img class="mang" src='<c:url value="/assets/images/thanhToan4.PNG" />' height="38" width="62"/></a>
 
                     </div>
                 </div>
