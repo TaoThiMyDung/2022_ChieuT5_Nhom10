@@ -1,4 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+  request.setCharacterEncoding("UTF-8");
+  response.setCharacterEncoding("UTF-8");
+
+%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="en">
 <head>
@@ -12,10 +17,11 @@
       <div class="ticket-diagram">
         <h1>Thông tin mua vé</h1>
         <div class="infoUser">
-          <h3>Thông tin khách hàng</h3>
-          <p>Họ và tên: Nguyễn Hoàng Minh</p>
-          <p>Số điện thoại: 0396933284</p>
-          <p>Gmail: hoangminh11282@gmail.com</p>
+          <h3>Thông tin khách hàng </h3>
+          <p>Họ và tên:  <%= request.getParameter("hoTen")%></p>
+          <p>Số điện thoại:  <%= request.getParameter("Sodt")%></p>
+          <p>Gmail:  <%= request.getParameter("gmail")%></p>
+          <p>Địa chỉ:  <%= request.getParameter("DiaChi")%></p>
           <h3>Thông tin chuyến</h3>
           <p>Tuyến xe: Sài Gòn - Tiền Giang</p>
           <p>Thời gian: 19:00 14/06/2022</p>
@@ -35,8 +41,14 @@
           <p>Nhà xe sẽ không hoàn tiền nếu khách hàng đến muộn hơn giờ khởi hành</p>
         </div>
       </div>
+      <form action="chon-the" method="post">
 
-      <a href=<c:url value="/chon-the" /> class="book-ticket my-hover">Xác nhận</a>
+        <input type="hidden" id="ten" name="ten" value="<%= request.getParameter("hoTen")%>">
+        <input type="hidden" id="sdt" name="sdt" value=" <%= request.getParameter("Sodt")%>">
+        <input type="hidden" id="gmail" name="gmail" value="<%= request.getParameter("gmail")%>">
+        <input type="hidden" id="diachi" name="diachi" value="<%= request.getParameter("DiaChi")%>">
+        <button type="submit" value="submit" class="book-ticket my-hover">Kiểm tra</button>
+      </form>
     </div>
   </div>
 </div>

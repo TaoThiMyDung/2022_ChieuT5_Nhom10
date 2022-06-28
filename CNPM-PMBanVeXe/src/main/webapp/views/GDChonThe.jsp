@@ -1,4 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    request.setCharacterEncoding("UTF-8");
+    response.setCharacterEncoding("UTF-8");
+
+%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="en">
 <head>
@@ -10,10 +15,21 @@
         <div class="left">
             <div class="ticket-diagram">
                 <h1>Chọn thẻ thanh toán</h1>
+
                 <div class="chooseCard">
-                    <button><a href='<c:url value="/nhap-the"/>' style="font-size: 30px">VISA</a></button>
-                    <button><a href='<c:url value="/nhap-the"/>' style="font-size: 30px">MasterCard</a></button>
-                    <button><a href='<c:url value="/nhap-the"/>' style="font-size: 30px">Credit</a></button>
+
+                    <form action="nhap-the" method="post" id="myForm">
+
+                        <input type="hidden" id="ten" name="ten" value="<%= request.getParameter("ten")%>">
+                        <input type="hidden" id="sdt" name="sdt" value=" <%= request.getParameter("sdt")%>">
+                        <input type="hidden" id="gmail" name="gmail" value="<%= request.getParameter("gmail")%>">
+                        <input type="hidden" id="diachi" name="diachi" value="<%= request.getParameter("diachi")%>">
+
+                    </form>
+                    <button type="submit" form="myForm" value="submit" style="font-size: 30px ">VISA</button>
+                    <button type="submit" form="myForm" value="submit" style="font-size: 30px">MasterCard</button>
+                    <button type="submit" form="myForm" value="submit" style="font-size: 30px">Credit</button>
+
                 </div>
                 <div class="choose-diagram">Vui lòng chọn loại thẻ để thanh toán.</div>
             </div>

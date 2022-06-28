@@ -1,10 +1,20 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    request.setCharacterEncoding("UTF-8");
+    response.setCharacterEncoding("UTF-8");
+
+%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="java.util.Random" %>
+
+
 <html>
     <head>
         <title>Thanh toán</title>
     </head>
     <body>
+
         <div id="content">
             <div id="ticket-diagram-gh-16">
                 <div class="left">
@@ -27,7 +37,22 @@
                         </div>
                     </div>
                     <a href='<c:url value="/nhap-the"/>' class="book-ticket my-hover">Quay Về</a>
-                    <a href='<c:url value="/thanh-toan-thanh-cong"/>' class="book-ticket my-hover">Mua Ngay</a>
+                    <form action="thanh-toan-thanh-cong" method="post">
+                        <%
+                            Random rand = new Random();
+                            int n = rand.nextInt(90000000) + 10000000;
+                        %>
+                        <input type="hidden" id="custId" name="custId" value="<%=n%>">
+                        <input type="hidden" id="ten" name="ten" value="<%= request.getParameter("ten")%>">
+                        <input type="hidden" id="sdt" name="sdt" value="<%= request.getParameter("sdt")%>">
+                        <input type="hidden" id="gmail" name="gmail" value="<%= request.getParameter("gmail")%>">
+                        <input type="hidden" id="diachi" name="diachi" value="<%= request.getParameter("diachi")%>">
+                        <input type="hidden" id="tien" name="tien" value="80000">
+
+
+                        <button type="submit" value="submit" class="book-ticket my-hover">Mua ngay</button>
+                    </form>
+
                 </div>
 
             </div>

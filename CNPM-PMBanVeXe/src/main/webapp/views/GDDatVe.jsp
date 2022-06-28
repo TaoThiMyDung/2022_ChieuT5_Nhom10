@@ -1,4 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    request.setCharacterEncoding("UTF-8");
+    response.setCharacterEncoding("UTF-8");
+
+%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
     <head>
@@ -106,33 +111,32 @@
             <div id="step-3" class="step">
                 <h1 class="step-title">Điền thông tin khách hàng</h1>
                 <div class="step-content">
-                    <form action="">
+                    <form action="thong-tin-mua-ve" id="minh" method="post">
                         <div class="form-group">
                             <label for="full-name">Họ tên</label>
-                            <input id="full-name" type="text">
+                            <input id="full-name" type="text" name="hoTen">
                             <p class="form-error"></p>
                         </div>
                         <div class="form-group">
                             <label for="phone">Số điện thoại</label>
-                            <input id="phone" type="text">
+                            <input id="phone" type="text" name="Sodt">
                             <p class="form-error"></p>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input id="email" type="text">
+                            <input id="email" type="text" name="gmail">
                             <p class="form-error"></p>
                         </div>
                         <div class="form-group">
                             <label for="address">Địa chỉ</label>
-                            <input id="address" type="text">
+                            <input id="address" type="text" name="DiaChi">
                             <p class="form-error"></p>
                         </div>
                     </form>
                 </div>
                 <div class="step-actions">
                     <div class="btn btn-back my-hover">Quay lại</div>
-
-                    <a href='<c:url value="/thong-tin-mua-ve"/>' class="btn btn-payment my-hover">Thanh toán</a>
+                    <button type="submit" form="minh" value="submit" class="btn btn-payment my-hover">Kiểm tra</button>
                 </div>
             </div>
         </div>

@@ -221,6 +221,7 @@ li {
     text-align: center;
     border-radius: 30px;
     background-color: #524FEC;
+    cursor: pointer;
 
 }
 #content #ticket-diagram-gh-16 .ticket-diagram .diagram {
@@ -255,7 +256,11 @@ li {
     border-radius: 5px;
     width: 60%;
 
+
+
 }
+
+
 #content #ticket-diagram-gh-16 .ticket-diagram .enterCard {
    display: block;
     padding: 15px;
