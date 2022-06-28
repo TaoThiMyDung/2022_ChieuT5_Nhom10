@@ -1,4 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    request.setCharacterEncoding("UTF-8");
+    response.setCharacterEncoding("UTF-8");
+
+%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="en">
 <head>
@@ -11,27 +16,19 @@
             <div class="ticket-diagram">
                 <h1>Nhập thẻ để thanh toán</h1>
                 <div class="enterCard">
-                    <form id="myForm" onsubmit="myFunction()" method="post">
+                    <form id="myForm" action="thanh-toan" method="post">
                         <label>Số thẻ:</label> <input type="text" name="SoThe" id="soThe"><br>
                         <label>Ngày hết hạn:</label> <input type="text" name="Date"><br>
                         <label>CVV:</label> <input type="text" name="CVV"><br>
+                        <input type="hidden" id="ten" name="ten" value="<%= request.getParameter("ten")%>">
+                        <input type="hidden" id="sdt" name="sdt" value=" <%= request.getParameter("sdt")%>">
+                        <input type="hidden" id="gmail" name="gmail" value="<%= request.getParameter("gmail")%>">
+                        <input type="hidden" id="diachi" name="diachi" value="<%= request.getParameter("diachi")%>">
                     </form>
                     <class class="summitFinal">
                         <button type="submit" form="myForm" value="submit" style="font-size: 30px">Kiểm tra</button>
                     </class>
-                    <script>
-                        function myFunction() {
-                            const soThe = 13579
-                            if (soThe == document.getElementById("soThe").value) {
-                                alert('Nhập thẻ thành công!!!')
-                                window.open('<c:url value="/thanh-toan" />', '_blank');
-                                self.close()
 
-                            } else {
-                                alert('Vui lòng kiểm tra lại thẻ')
-                            }
-                        }
-                    </script>
                 </div>
                 <div class="choose-diagram">Vui lòng nhập đúng thẻ để thanh toán.</div>
             </div>

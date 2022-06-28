@@ -1,4 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+  request.setCharacterEncoding("UTF-8");
+  response.setCharacterEncoding("UTF-8");
+
+%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="en">
 <head>
@@ -13,7 +18,8 @@
         <h1>Thanh toán thành công</h1>
         <div class="verification">
           <p>Cảm ơn quý khách đã tin tưởng mà sử dụng dịch vụ của Vé Xe Giả</p>
-          <p>ID của quý khách là: 19130134, vui lòng ghi nhớ số này để lên xe</p>
+          <p>ID của quý khách là: <%= request.getParameter("custId")%>, vui lòng ghi nhớ số này để lên xe</p>
+
 
 
         </div>
