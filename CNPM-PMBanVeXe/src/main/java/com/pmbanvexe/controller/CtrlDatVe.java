@@ -4,14 +4,13 @@ import com.pmbanvexe.Services.DvKhachHang;
 import com.pmbanvexe.Services.DvVe;
 import com.pmbanvexe.Services.DvXe;
 import com.pmbanvexe.beans.DiemDung;
+import com.pmbanvexe.beans.KhachHang;
 import com.pmbanvexe.beans.ThongTinVeXe;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.List;
 
@@ -30,8 +29,26 @@ public class CtrlDatVe extends HttpServlet {
         int tongGiaVe = 0;
         for (ThongTinVeXe ve : dsVe) {
             tongGiaVe += ve.getGiaVe();
-            dsMaVe += ve.getMaVe() +",";
+            dsMaVe += ve.getMaVe() + ",";
         }
+
+        HttpSession session = request.getSession();
+        String maKhString = (String) session.getAttribute("maKh");
+        if(maKhString != null) {
+            KhachHang khachHang = DvKhachHang.layKhachHang(Integer.parseInt(maKhString.trim()));
+            request.setAttribute("khachHang", khachHang);
+        } else {
+            Cookie cookie[] = request.getCookies();
+            for(Cookie c: cookie) {
+                if(c.getName().equals("maKh")) {
+                    session.setAttribute("maKh", c.getValue());
+                    maKhString = c.getValue();
+                    KhachHang khachHang = DvKhachHang.layKhachHang(Integer.parseInt(maKhString));
+                    request.setAttribute("khachHang", khachHang);
+                }
+            }
+        }
+
         List<DiemDung> cacDiemDon = DvXe.layCacDiemDungCuaChuyenXe(maChuyenXe, "diemDon");
         List<DiemDung> cacDiemTra = DvXe.layCacDiemDungCuaChuyenXe(maChuyenXe, "diemTra");
         request.setAttribute("dsMaVe", dsMaVe);
@@ -57,10 +74,22 @@ public class CtrlDatVe extends HttpServlet {
         String diaChi = request.getParameter("DiaChi");
         int maDiemDon = Integer.parseInt(request.getParameter("diem-don"));
         int maDiemTra = Integer.parseInt(request.getParameter("diem-tra"));
-
-        int maKh = DvKhachHang.themKhachHang(hoTen, sdt, email, diaChi);
-        for(Integer i: dsMaVeInt) {
+        KhachHang khachHang = DvKhachHang.layKhachHang(hoTen, sdt, email, diaChi);
+        int maKh = 0;
+        if (khachHang == null) {
+            maKh = DvKhachHang.themKhachHang(hoTen, sdt, email, diaChi);
+        } else {
+            maKh = khachHang.getMaKh();
+        }
+        for (Integer i : dsMaVeInt) {
             DvVe.datVe(i, maKh, maDiemDon, maDiemTra);
+        }
+        HttpSession session = request.getSession();
+        if (session.getAttribute("maKh") == null) {
+            session.setAttribute("maKh", maKh);
+            Cookie cookie = new Cookie("maKh", maKh + "");
+            cookie.setMaxAge(60 * 60 * 24);
+            response.addCookie(cookie);
         }
         response.sendRedirect("thong-tin-mua-ve");
     }
