@@ -1,9 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-    request.setCharacterEncoding("UTF-8");
-    response.setCharacterEncoding("UTF-8");
-
-%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
     <head>
@@ -29,62 +25,24 @@
             <div id="step-1" class="step show">
                 <h1 class="step-title">Các vé đã chọn</h1>
                 <div class="step-content">
-                    <div class="ticket">
-                        <p>Mã vé: VE2</p>
-                        <p>Điểm đi: TP.HCM</p>
-                        <p>Điểm đến: Tiền Giang</p>
-                        <p>Loại xe: Ghế</p>
-                        <p>Vị trí: Ghế số 2</p>
-                        <p>Ngày khởi hành: 13/06/2022</p>
-                        <p>Giờ khởi hành: 09:30</p>
-                        <p>Giá vé: 80.000 VNĐ</p>
-                    </div>
-                    <div class="ticket">
-                        <p>Mã vé: VE2</p>
-                        <p>Điểm đi: TP.HCM</p>
-                        <p>Điểm đến: Tiền Giang</p>
-                        <p>Loại xe: Ghế</p>
-                        <p>Vị trí: Ghế số 2</p>
-                        <p>Ngày khởi hành: 13/06/2022</p>
-                        <p>Giờ khởi hành: 09:30</p>
-                        <p>Giá vé: 80.000 VNĐ</p>
-                    </div>
-                    <div class="ticket">
-                        <p>Mã vé: VE2</p>
-                        <p>Điểm đi: TP.HCM</p>
-                        <p>Điểm đến: Tiền Giang</p>
-                        <p>Loại xe: Ghế</p>
-                        <p>Vị trí: Ghế số 2</p>
-                        <p>Ngày khởi hành: 13/06/2022</p>
-                        <p>Giờ khởi hành: 09:30</p>
-                        <p>Giá vé: 80.000 VNĐ</p>
-                    </div>
-                    <div class="ticket">
-                        <p>Mã vé: VE2</p>
-                        <p>Điểm đi: TP.HCM</p>
-                        <p>Điểm đến: Tiền Giang</p>
-                        <p>Loại xe: Ghế</p>
-                        <p>Vị trí: Ghế số 2</p>
-                        <p>Ngày khởi hành: 13/06/2022</p>
-                        <p>Giờ khởi hành: 09:30</p>
-                        <p>Giá vé: 80.000 VNĐ</p>
-                    </div>
-                    <div class="ticket">
-                        <p>Mã vé: VE2</p>
-                        <p>Điểm đi: TP.HCM</p>
-                        <p>Điểm đến: Tiền Giang</p>
-                        <p>Loại xe: Ghế</p>
-                        <p>Vị trí: Ghế số 2</p>
-                        <p>Ngày khởi hành: 13/06/2022</p>
-                        <p>Giờ khởi hành: 09:30</p>
-                        <p>Giá vé: 80.000 VNĐ</p>
-                    </div>
+                    <c:forEach var="ve" items="${requestScope.dsVe}">
+                        <div class="ticket">
+                            <p>Mã vé: ${ve.maVe}</p>
+                            <p>Điểm đi: ${ve.diemDi}</p>
+                            <p>Điểm đến: ${ve.diemDen}</p>
+                            <p>Loại xe: ${ve.tenLoaiXe}</p>
+                            <p>Vị trí: Ghế số ${ve.viTriGhe}</p>
+                            <p>Ngày khởi hành: <fmt:formatDate pattern = "dd/MM/yyyy" value = "${ve.thoiGianDi}" /></p>
+                            <p>Giờ khởi hành: <fmt:formatDate type = "time" value = "${ve.thoiGianDi}" /></p>
+                            <p>Giá vé: ${ve.giaVe} VNĐ</p>
+                        </div>
+                    </c:forEach>
                 </div>
                 <div class="step-actions">
-                    <a href="#">
+                    <a href='<c:url value="/chon-cho-ngoi?maChuyenXe=${requestScope.maChuyenXe}"/>'>
                         <div class="btn btn-back my-hover">Quay lại</div>
                     </a>
-                    <div class="total-price">Tổng: 350.000 VNĐ</div>
+                    <div class="total-price">Tổng: ${requestScope.tongGiaVe} VNĐ</div>
                     <div class="btn btn-continue my-hover">Tiếp tục</div>
                 </div>
             </div>
@@ -93,13 +51,17 @@
                     <div class="palce-point">
                         <label for="pick-up">Chọn điểm đón</label>
                         <select name="pick-up" id="pick-up">
-                            <option value="">Bến xe Hồng Hoàng</option>
+                            <c:forEach var="diemDung" items="${requestScope.cacDiemDon}">
+                                <option value="${diemDung.maDiemDung}">${diemDung.tenDiemDung}</option>
+                            </c:forEach>
                         </select>
                     </div>
                     <div class="palce-point">
                         <label for="drop-off">Chọn điểm trả</label>
                         <select name="drop-off" id="drop-off">
-                            <option value="">Bệnh viện MPT</option>
+                            <c:forEach var="diemDung" items="${requestScope.cacDiemTra}">
+                                <option value="${diemDung.maDiemDung}">${diemDung.tenDiemDung}</option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>
@@ -111,7 +73,10 @@
             <div id="step-3" class="step">
                 <h1 class="step-title">Điền thông tin khách hàng</h1>
                 <div class="step-content">
-                    <form action="thong-tin-mua-ve" id="minh" method="post">
+                    <form action="dat-ve" id="form-book-ticket" method="post">
+                        <input type="hidden" name="dsMaVe" value="${requestScope.dsMaVe}">
+                        <input type="hidden" name="diem-don">
+                        <input type="hidden" name="diem-tra">
                         <div class="form-group">
                             <label for="full-name">Họ tên</label>
                             <input id="full-name" type="text" name="hoTen">
@@ -136,7 +101,7 @@
                 </div>
                 <div class="step-actions">
                     <div class="btn btn-back my-hover">Quay lại</div>
-                    <button type="submit" form="minh" value="submit" class="btn btn-payment my-hover">Kiểm tra</button>
+                    <button type="submit" form="form-book-ticket" value="submit" class="btn btn-payment my-hover">Đặt vé</button>
                 </div>
             </div>
         </div>

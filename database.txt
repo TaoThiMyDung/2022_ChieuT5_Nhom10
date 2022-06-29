@@ -1,0 +1,168 @@
+#create database
+DROP DATABASE IF EXISTS dbquanlivexe;
+CREATE DATABASE dbquanlivexe;
+USE dbquanlivexe;
+
+CREATE TABLE LoaiXe (
+ma_loai_xe int PRIMARY KEY AUTO_INCREMENT,
+    ten_loai_xe varchar(50)
+);
+
+CREATE TABLE Xe (
+ma_xe int PRIMARY KEY AUTO_INCREMENT,
+    ten_xe varchar(50),
+    ma_loai_xe int,
+    bien_so varchar(20),
+    so_ghe int,
+    FOREIGN KEY fk_xe_loaixe (ma_loai_xe) REFERENCES LoaiXe(ma_loai_xe)
+);
+
+CREATE TABLE TuyenXe (
+ma_tuyen_xe int PRIMARY KEY AUTO_INCREMENT,
+    ten_tuyen_xe varchar(50),
+    diem_di varchar(255),
+    diem_den varchar(255),
+    quang_duong int
+);
+
+CREATE TABLE ChuyenXe (
+ma_chuyen_xe int PRIMARY KEY AUTO_INCREMENT,
+    ten_chuyen_xe varchar(50),
+    ma_xe int,
+    ma_tuyen_xe int,
+    thoi_gian_di datetime,
+    thoi_gian_den datetime,
+    ghe_trong int,
+    gia_ve int,
+    FOREIGN KEY fk_chuyenxe_xe (ma_xe) REFERENCES Xe(ma_xe),
+    FOREIGN KEY fk_chuyenxe_tuyenxe (ma_tuyen_xe) REFERENCES TuyenXe(ma_tuyen_xe)
+);
+
+CREATE TABLE DiemDon(
+    ma_diem_don int PRIMARY KEY AUTO_INCREMENT,
+    ma_chuyen_xe int,
+    ten_diem_don varchar(255),
+    FOREIGN KEY fk_diemdon_chuyenxe (ma_chuyen_xe) REFERENCES ChuyenXe(ma_chuyen_xe)
+);
+
+CREATE TABLE DiemTra(
+    ma_diem_tra int PRIMARY KEY AUTO_INCREMENT,
+    ma_chuyen_xe int,
+    ten_diem_tra varchar(255),
+    FOREIGN KEY fk_diemtra_chuyenxe (ma_chuyen_xe) REFERENCES ChuyenXe(ma_chuyen_xe)
+);
+
+CREATE TABLE KhachHang (
+ma_kh int PRIMARY KEY AUTO_INCREMENT,
+    ho_ten varchar(50),
+    sdt varchar(11),
+    email varchar(50),
+    dia_chi varchar(255)
+);
+
+CREATE TABLE TaiKhoan (
+ma_tk int PRIMARY KEY AUTO_INCREMENT,
+    ten_tk varchar(50),
+    mat_khau varchar(50),
+    ma_kh int,
+    ngay_dk datetime,
+    FOREIGN KEY fk_taikhoan_khachhang (ma_kh) REFERENCES KhachHang(ma_kh)
+);
+
+CREATE TABLE Ve (
+ma_ve int PRIMARY KEY AUTO_INCREMENT,
+    ma_chuyen_xe int,
+    vi_tri_ghe int,
+    FOREIGN KEY fk_ve_chuyenxe (ma_chuyen_xe) REFERENCES ChuyenXe(ma_chuyen_xe)
+);
+
+CREATE TABLE DatVe (
+    ma_ve int,
+    ma_kh int,
+    ma_diem_don int,
+    ma_diem_tra int,
+    trang_thai varchar(20) DEFAULT 'CHO_THANH_TOAN',
+    FOREIGN KEY fk_datve_ve (ma_ve) REFERENCES Ve(ma_ve),
+    FOREIGN KEY fk_datve_kh (ma_kh) REFERENCES KhachHang(ma_kh),
+    FOREIGN KEY fk_datve_diemdon (ma_diem_don) REFERENCES DiemDon(ma_diem_don),
+    FOREIGN KEY fk_datve_diemtra (ma_diem_tra) REFERENCES DiemTra(ma_diem_tra)
+);
+
+
+#TRIGGER TẠO VÉ
+DELIMITER $$ 
+CREATE TRIGGER tao_Ve_Tu_Dong AFTER INSERT ON chuyenxe FOR EACH ROW
+BEGIN
+DECLARE counter int ;
+SET counter = 2;
+    WHILE counter < (SELECT x.so_ghe FROM xe as x WHERE x.ma_xe = NEW.ma_xe) + 1 DO
+        INSERT INTO ve(ma_chuyen_xe, vi_tri_ghe) VALUES(NEW.ma_chuyen_xe, counter);
+        SET counter = counter + 1;
+    END WHILE ;
+END $$
+DELIMITER ;
+
+
+#TRIGGER cập nhật chổ trống
+DELIMITER $$ 
+CREATE TRIGGER cap_nhat_cho_trong AFTER INSERT ON datve FOR EACH ROW
+BEGIN
+UPDATE chuyenxe set chuyenxe.ghe_trong = chuyenxe.ghe_trong - 1 WHERE chuyenxe.ma_chuyen_xe IN (SELECT cx.ma_chuyen_xe FROM chuyenxe as cx, ve as v WHERE v.ma_ve = new.ma_ve and cx.ma_chuyen_xe = v.ma_chuyen_xe);
+END $$
+DELIMITER ;
+
+#PROCEDURE lấy thông tin chuyến xe
+DELIMITER $$
+CREATE PROCEDURE thong_tin_chuyen_xe(IN ma_chuyen_xe int)
+BEGIN
+SELECT t.diem_di, t.diem_den, c.thoi_gian_di, c.thoi_gian_den , t.quang_duong, x.ten_loai_xe, x.bien_so, x.so_ghe, c.ghe_trong, c.gia_ve
+FROM tuyenxe as t, chuyenxe as c, (SELECT xe.ma_xe, xe.ten_xe, loaixe.ten_loai_xe, xe.bien_so, xe.so_ghe FROM xe LEFT JOIN loaixe ON xe.ma_loai_xe = loaixe.ma_loai_xe) as x WHERE c.ma_chuyen_xe = ma_chuyen_xe and c.ma_tuyen_xe = t.ma_tuyen_xe and c.ma_xe = x.ma_xe;
+END $$
+DELIMITER ;
+
+#PROCEDURE lấy vé xe
+DELIMITER $$
+CREATE PROCEDURE thong_tin_ve_xe(IN ma_chuyen_xe int, IN vi_tri_ghe int)
+BEGIN
+SELECT r.*, v.ma_ve, v.vi_tri_ghe FROM (SELECT
+r2.*, loaixe.ten_loai_xe
+FROM (SELECT
+      r1.*, xe.ma_loai_xe, xe.bien_so, xe.so_ghe
+      FROM (SELECT
+            chuyenxe.*, tuyenxe.diem_di, tuyenxe.diem_den, tuyenxe.quang_duong
+            FROM chuyenxe LEFT JOIN tuyenxe ON chuyenxe.ma_tuyen_xe = tuyenxe.ma_tuyen_xe)
+as r1 LEFT JOIN xe ON r1.ma_xe = xe.ma_xe) as r2 LEFT JOIN loaixe ON r2.ma_xe = loaixe.ma_loai_xe) as r, ve as v
+WHERE v.ma_chuyen_xe = ma_chuyen_xe and v.vi_tri_ghe = vi_tri_ghe and v.ma_chuyen_xe = r.ma_chuyen_xe;
+END $$
+DELIMITER ;
+
+#PROCEDURE thêm khách hàng trả về id kh
+DELIMITER $$
+CREATE PROCEDURE themKhachHang(IN ho_ten varchar(50), IN sdt varchar(11),IN email varchar(50), IN dia_chi varchar(255))
+BEGIN
+INSERT INTO KhachHang(ho_ten, sdt, email, dia_chi) VALUES(ho_ten, sdt, email, dia_chi);
+SELECT LAST_INSERT_ID();
+END $$
+DELIMITER ;
+
+#insert database
+INSERT INTO TuyenXe(ten_tuyen_xe, diem_di, diem_den, quang_duong) VALUES('Tp.HCM đến Tiền Giang', 'Tp.HCM', 'Tiền Giang', 100);
+INSERT INTO TuyenXe(ten_tuyen_xe, diem_di, diem_den, quang_duong) VALUES('Tp.HCM đén Đồng Tháp', 'Tp.HCM', 'Đồng Tháp', 170);
+
+INSERT INTO LoaiXe(ten_loai_xe) VALUES('ghế');
+INSERT INTO LoaiXe(ten_loai_xe) VALUES('giường');
+
+INSERT INTO Xe(ten_xe, ma_loai_xe, bien_so, so_ghe) VALUES('Xe 16 chổ số 1', 1, '51H-11111', 16);
+INSERT INTO Xe(ten_xe, ma_loai_xe, bien_so, so_ghe) VALUES('Xe 16 chổ số 2', 1, '51H-22222', 16);
+INSERT INTO Xe(ten_xe, ma_loai_xe, bien_so, so_ghe) VALUES('Xe 30 chổ số 1', 1, '51H-33333', 30);
+INSERT INTO Xe(ten_xe, ma_loai_xe, bien_so, so_ghe) VALUES('Xe 40 chổ số 1', 2, '51H-44444', 40);
+
+INSERT INTO ChuyenXe(ten_chuyen_xe, ma_xe, ma_tuyen_xe, thoi_gian_di, thoi_gian_den, ghe_trong, gia_ve) VALUES('Chuyến xe số 1', 1, 1, '2020-06-28 7:00:00', '2020-06-28 10:00:00', 15, 80000);
+
+INSERT INTO DiemDon(ma_chuyen_xe, ten_diem_don) VALUES(1, 'Bến xe Hồng Hoàng');
+INSERT INTO DiemDon(ma_chuyen_xe, ten_diem_don) VALUES(1, 'Đại học Y Dược Tp.HCM');
+INSERT INTO DiemTra(ma_chuyen_xe, ten_diem_tra) VALUES(1, 'Tân Phước');
+INSERT INTO DiemTra(ma_chuyen_xe, ten_diem_tra) VALUES(1, 'Bệnh viện Mỹ Phước Tây');
+
+Call themKhachHang('luong huu luan', '0914066420', 'luongluanmpt@gmail.com', '409 Hoang Huu Nam Tp.Thu Duc Tp Hcm');
+INSERT INTO TaiKhoan(ten_tk, mat_khau, ma_kh) VALUES('luongluan', '123456', 1);
