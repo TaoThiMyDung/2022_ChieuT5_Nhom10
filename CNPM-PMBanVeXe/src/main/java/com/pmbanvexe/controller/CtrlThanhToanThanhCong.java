@@ -1,9 +1,7 @@
 package com.pmbanvexe.controller;
 
 import com.pmbanvexe.beans.thanhtoan;
-import com.pmbanvexe.beans.the;
 import com.pmbanvexe.dao.ThanhToanDAO;
-import com.pmbanvexe.dao.TheDAO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet(name = "ThanhToanThanhCong", value = "/thanh-toan-thanh-cong")
 public class CtrlThanhToanThanhCong extends HttpServlet {
