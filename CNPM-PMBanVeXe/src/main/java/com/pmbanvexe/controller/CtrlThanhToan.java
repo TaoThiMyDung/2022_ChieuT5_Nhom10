@@ -1,7 +1,9 @@
 package com.pmbanvexe.controller;
 
-import com.pmbanvexe.beans.the;
+import com.pmbanvexe.beans.*;
 import com.pmbanvexe.dao.TheDAO;
+import com.pmbanvexe.dao.ThongTinChuyenXeDAO;
+import com.pmbanvexe.dao.ThongTinKhachHangDAO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -17,21 +19,28 @@ import java.util.List;
 public class CtrlThanhToan extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        request.setCharacterEncoding("UTF-8");
+
+        List<khachHang> list = ThongTinKhachHangDAO.getInstance().getInfo();
+        List<ve> listVe = ThongTinChuyenXeDAO.getInstance().getVe();
+        List<chuyenxe> listChuyenXe = ThongTinChuyenXeDAO.getInstance().getThongTinChuyen();
+        List<tuyenDuong> listTuyenDuong = ThongTinChuyenXeDAO.getInstance().getTuyen();
+
+        int SLVe = listVe.size();
+        request.setAttribute("list",list);
+        request.setAttribute("listVe",listVe);
+        request.setAttribute("SLVe",SLVe);
+        request.setAttribute("listChuyenXe",listChuyenXe);
+        request.setAttribute("listTuyenDuong",listTuyenDuong);
         RequestDispatcher rd = request.getRequestDispatcher("/views/GDThanhToan.jsp");
         rd.forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        request.setCharacterEncoding("UTF-8");
-        String sothe = request.getParameter("SoThe").trim();
-        String date = request.getParameter("Date").trim();
-        String cvv = request.getParameter("CVV").trim();
 
-        List<the> t = TheDAO.getInstance().checkCard(sothe,date,cvv);
-        int check = t.size();
-        request.setAttribute("check",check);
+
         doGet(request, response);
     }
 }

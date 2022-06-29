@@ -1,9 +1,9 @@
 package com.pmbanvexe.controller;
 
-import com.pmbanvexe.beans.thanhtoan;
-import com.pmbanvexe.beans.the;
+import com.pmbanvexe.beans.*;
 import com.pmbanvexe.dao.ThanhToanDAO;
-import com.pmbanvexe.dao.TheDAO;
+import com.pmbanvexe.dao.ThongTinChuyenXeDAO;
+import com.pmbanvexe.dao.ThongTinKhachHangDAO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,22 +19,33 @@ import java.util.List;
 public class CtrlThanhToanThanhCong extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        request.setCharacterEncoding("UTF-8");
+        String id = request.getParameter("custId");
+        int tien = Integer.parseInt(request.getParameter("tien"));
+        String ve_mua = request.getParameter("ve_da_mua");
+        String ten = request.getParameter("ten");
+        thanhtoan t = ThanhToanDAO.getInstance().addItem(id,tien,ve_mua,ten);
+        List<ve> listVe = ThongTinChuyenXeDAO.getInstance().getVe();
+        int count = listVe.size();
+
+        for (int i = 0 ; i< count;i++) {
+
+            chitietHD ct = ThanhToanDAO.getInstance().addHD(id, String.valueOf(listVe.get(i)));
+        }
+
+
+
+
+
+
         RequestDispatcher rd = request.getRequestDispatcher("/views/GDThanhToanThanhCong.jsp");
         rd.forward(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        request.setCharacterEncoding("UTF-8");
-        String id = request.getParameter("custId").trim();
-        String ten = request.getParameter("ten").trim();
-        String sdt = request.getParameter("sdt").trim();
-        String gmail = request.getParameter("gmail").trim();
-        String diachi = request.getParameter("diachi").trim();
-        String tien = request.getParameter("tien").trim();
 
-        thanhtoan t = ThanhToanDAO.getInstance().addItem(id,ten,sdt,gmail,diachi,tien);
 
 
         doGet(request, response);
