@@ -155,6 +155,15 @@ DELETE FROM datve where datve.thoi_gian_dat < (now() - INTERVAL 30 minute) and t
 #insert database
 INSERT INTO TuyenXe(ten_tuyen_xe, diem_di, diem_den, quang_duong) VALUES('Tp.HCM đến Tiền Giang', 'Tp.HCM', 'Tiền Giang', 100);
 INSERT INTO TuyenXe(ten_tuyen_xe, diem_di, diem_den, quang_duong) VALUES('Tp.HCM đén Đồng Tháp', 'Tp.HCM', 'Đồng Tháp', 170);
+INSERT INTO TuyenXe(ten_tuyen_xe, diem_di, diem_den, quang_duong) VALUES('Tp.HCM đén Bình Định', 'Tp.HCM', 'Bình Định', 300);
+INSERT INTO TuyenXe(ten_tuyen_xe, diem_di, diem_den, quang_duong) VALUES('Tp.HCM đén Tây Ninh', 'Tp.HCM', 'Tây Ninh', 70);
+INSERT INTO TuyenXe(ten_tuyen_xe, diem_di, diem_den, quang_duong) VALUES('Tp.HCM đén Huế', 'Tp.HCM', 'Huế', 380);
+
+INSERT INTO TuyenXe(ten_tuyen_xe, diem_di, diem_den, quang_duong) VALUES('Quảng Nam đén Huế', 'Quảng Nam', 'Huế', 80);
+INSERT INTO TuyenXe(ten_tuyen_xe, diem_di, diem_den, quang_duong) VALUES('Bình Đinh đén TP.HCM', 'Bình Đinh', 'Huế', 380);
+INSERT INTO TuyenXe(ten_tuyen_xe, diem_di, diem_den, quang_duong) VALUES('Bình Định đén Tiền Giang', 'Bình Định', 'Tiền Giang', 380);
+INSERT INTO TuyenXe(ten_tuyen_xe, diem_di, diem_den, quang_duong) VALUES('Huế đén Tp.HCM', 'Huế', 'Tp.HCM', 380);
+
 
 INSERT INTO LoaiXe(ten_loai_xe) VALUES('ghế');
 INSERT INTO LoaiXe(ten_loai_xe) VALUES('giường');
@@ -165,11 +174,48 @@ INSERT INTO Xe(ten_xe, ma_loai_xe, bien_so, so_ghe) VALUES('Xe 30 chổ số 1',
 INSERT INTO Xe(ten_xe, ma_loai_xe, bien_so, so_ghe) VALUES('Xe 40 chổ số 1', 2, '51H-44444', 40);
 
 INSERT INTO ChuyenXe(ten_chuyen_xe, ma_xe, ma_tuyen_xe, thoi_gian_di, thoi_gian_den, ghe_trong, gia_ve) VALUES('Chuyến xe số 1', 1, 1, '2020-06-28 7:00:00', '2020-06-28 10:00:00', 15, 80000);
+INSERT INTO ChuyenXe(ten_chuyen_xe, ma_xe, ma_tuyen_xe, thoi_gian_di, thoi_gian_den, ghe_trong, gia_ve) VALUES('Chuyến xe số 1', 1, 2, '2020-06-28 7:00:00', '2020-06-28 10:00:00', 15, 80000);
+INSERT INTO ChuyenXe(ten_chuyen_xe, ma_xe, ma_tuyen_xe, thoi_gian_di, thoi_gian_den, ghe_trong, gia_ve) VALUES('Chuyến xe số 1', 1, 3, '2020-06-28 7:00:00', '2020-06-28 10:00:00', 15, 80000);
+INSERT INTO ChuyenXe(ten_chuyen_xe, ma_xe, ma_tuyen_xe, thoi_gian_di, thoi_gian_den, ghe_trong, gia_ve) VALUES('Chuyến xe số 2', 2, 4, '2020-06-28 7:00:00', '2020-06-28 10:00:00', 15, 80000);
+INSERT INTO ChuyenXe(ten_chuyen_xe, ma_xe, ma_tuyen_xe, thoi_gian_di, thoi_gian_den, ghe_trong, gia_ve) VALUES('Chuyến xe số 2', 2, 5, '2020-06-28 7:00:00', '2020-06-28 10:00:00', 15, 80000);
+INSERT INTO ChuyenXe(ten_chuyen_xe, ma_xe, ma_tuyen_xe, thoi_gian_di, thoi_gian_den, ghe_trong, gia_ve) VALUES('Chuyến xe số 3', 3, 6, '2020-06-28 7:00:00', '2020-06-28 10:00:00', 29, 80000);
+INSERT INTO ChuyenXe(ten_chuyen_xe, ma_xe, ma_tuyen_xe, thoi_gian_di, thoi_gian_den, ghe_trong, gia_ve) VALUES('Chuyến xe số 3', 3, 7, '2020-06-28 7:00:00', '2020-06-28 10:00:00', 29, 80000);
 
 INSERT INTO DiemDon(ma_chuyen_xe, ten_diem_don) VALUES(1, 'Bến xe Hồng Hoàng');
 INSERT INTO DiemDon(ma_chuyen_xe, ten_diem_don) VALUES(1, 'Đại học Y Dược Tp.HCM');
 INSERT INTO DiemTra(ma_chuyen_xe, ten_diem_tra) VALUES(1, 'Tân Phước');
 INSERT INTO DiemTra(ma_chuyen_xe, ten_diem_tra) VALUES(1, 'Bệnh viện Mỹ Phước Tây');
+
+INSERT INTO DiemDon(ma_chuyen_xe, ten_diem_don) VALUES(2, 'Bến xe Hồng Hoàng');
+INSERT INTO DiemDon(ma_chuyen_xe, ten_diem_don) VALUES(2, 'Đại học Y Dược Tp.HCM');
+INSERT INTO DiemTra(ma_chuyen_xe, ten_diem_tra) VALUES(2, 'Tân Phước');
+INSERT INTO DiemTra(ma_chuyen_xe, ten_diem_tra) VALUES(2, 'Bệnh viện Mỹ Phước Tây');
+
+INSERT INTO DiemDon(ma_chuyen_xe, ten_diem_don) VALUES(3, 'Bến xe Hồng Hoàng');
+INSERT INTO DiemDon(ma_chuyen_xe, ten_diem_don) VALUES(3, 'Đại học Y Dược Tp.HCM');
+INSERT INTO DiemTra(ma_chuyen_xe, ten_diem_tra) VALUES(3, 'Tân Phước');
+INSERT INTO DiemTra(ma_chuyen_xe, ten_diem_tra) VALUES(3, 'Bệnh viện Mỹ Phước Tây');
+
+INSERT INTO DiemDon(ma_chuyen_xe, ten_diem_don) VALUES(4, 'Bến xe Hồng Hoàng');
+INSERT INTO DiemDon(ma_chuyen_xe, ten_diem_don) VALUES(4, 'Đại học Y Dược Tp.HCM');
+INSERT INTO DiemTra(ma_chuyen_xe, ten_diem_tra) VALUES(4, 'Tân Phước');
+INSERT INTO DiemTra(ma_chuyen_xe, ten_diem_tra) VALUES(4, 'Bệnh viện Mỹ Phước Tây');
+
+INSERT INTO DiemDon(ma_chuyen_xe, ten_diem_don) VALUES(5, 'Bến xe Hồng Hoàng');
+INSERT INTO DiemDon(ma_chuyen_xe, ten_diem_don) VALUES(5, 'Đại học Y Dược Tp.HCM');
+INSERT INTO DiemTra(ma_chuyen_xe, ten_diem_tra) VALUES(5, 'Tân Phước');
+INSERT INTO DiemTra(ma_chuyen_xe, ten_diem_tra) VALUES(5, 'Bệnh viện Mỹ Phước Tây');
+
+INSERT INTO DiemDon(ma_chuyen_xe, ten_diem_don) VALUES(6, 'Bến xe Hồng Hoàng');
+INSERT INTO DiemDon(ma_chuyen_xe, ten_diem_don) VALUES(6, 'Đại học Y Dược Tp.HCM');
+INSERT INTO DiemTra(ma_chuyen_xe, ten_diem_tra) VALUES(6, 'Tân Phước');
+INSERT INTO DiemTra(ma_chuyen_xe, ten_diem_tra) VALUES(6, 'Bệnh viện Mỹ Phước Tây');
+
+INSERT INTO DiemDon(ma_chuyen_xe, ten_diem_don) VALUES(7, 'Bến xe Hồng Hoàng');
+INSERT INTO DiemDon(ma_chuyen_xe, ten_diem_don) VALUES(7, 'Đại học Y Dược Tp.HCM');
+INSERT INTO DiemTra(ma_chuyen_xe, ten_diem_tra) VALUES(7, 'Tân Phước');
+INSERT INTO DiemTra(ma_chuyen_xe, ten_diem_tra) VALUES(7, 'Bệnh viện Mỹ Phước Tây');
+
 
 Call themKhachHang('luong huu luan', '0914066420', 'luongluanmpt@gmail.com', '409 Hoang Huu Nam Tp.Thu Duc Tp Hcm');
 INSERT INTO TaiKhoan(ten_tk, mat_khau, ma_kh) VALUES('luongluan', '123456', 1);
