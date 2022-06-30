@@ -25,7 +25,7 @@
 
                     <p>Nội dung: Thanh toán tiền mua vé xe</p>
                 </div>
-                <div class="choose-diagram">Thanh toán: 80.000 đ.</div>
+                <div class="choose-diagram">Xác nhận mua vé</div>
             </div>
         </div>
         <div class="right">
