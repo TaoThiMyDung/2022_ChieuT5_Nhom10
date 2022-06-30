@@ -89,41 +89,33 @@ CREATE TABLE DatVe (
     FOREIGN KEY fk_datve_diemtra (ma_diem_tra) REFERENCES DiemTra(ma_diem_tra)
 );
 
-
-#TRIGGER TẠO VÉ
-DELIMITER $$ 
-CREATE TRIGGER tao_Ve_Tu_Dong AFTER INSERT ON chuyenxe FOR EACH ROW
-BEGIN
-DECLARE counter int ;
-SET counter = 2;
-    WHILE counter < (SELECT x.so_ghe FROM xe as x WHERE x.ma_xe = NEW.ma_xe) + 1 DO
-        INSERT INTO ve(ma_chuyen_xe, vi_tri_ghe) VALUES(NEW.ma_chuyen_xe, counter);
-        SET counter = counter + 1;
-    END WHILE ;
-END $$
-DELIMITER ;
-
-
-#TRIGGER cập nhật chổ trống
-DELIMITER $$ 
-CREATE TRIGGER cap_nhat_cho_trong AFTER INSERT ON datve FOR EACH ROW
-BEGIN
-UPDATE chuyenxe set chuyenxe.ghe_trong = chuyenxe.ghe_trong - 1 WHERE chuyenxe.ma_chuyen_xe IN (SELECT cx.ma_chuyen_xe FROM chuyenxe as cx, ve as v WHERE v.ma_ve = new.ma_ve and cx.ma_chuyen_xe = v.ma_chuyen_xe);
-END $$
-DELIMITER ;
-
-#PROCEDURE lấy thông tin chuyến xe
+# tất cả hàm, event, trigger
 DELIMITER $$
-CREATE PROCEDURE thong_tin_chuyen_xe(IN ma_chuyen_xe int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `lay_tat_ca_chuyen_xe`()
 BEGIN
-SELECT t.diem_di, t.diem_den, c.thoi_gian_di, c.thoi_gian_den , t.quang_duong, x.ten_loai_xe, x.bien_so, x.so_ghe, c.ghe_trong, c.gia_ve
+SELECT c.ma_chuyen_xe, t.diem_di, t.diem_den, c.thoi_gian_di, c.thoi_gian_den , t.quang_duong, x.ten_loai_xe, x.bien_so, x.so_ghe, c.ghe_trong, c.gia_ve
+FROM tuyenxe as t, chuyenxe as c, (SELECT xe.ma_xe, xe.ten_xe, loaixe.ten_loai_xe, xe.bien_so, xe.so_ghe FROM xe LEFT JOIN loaixe ON xe.ma_loai_xe = loaixe.ma_loai_xe) as x WHERE c.ma_tuyen_xe = t.ma_tuyen_xe and c.ma_xe = x.ma_xe;
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `themKhachHang`(IN ho_ten varchar(50), IN sdt varchar(11),IN email varchar(50), IN dia_chi varchar(255))
+BEGIN
+INSERT INTO KhachHang(ho_ten, sdt, email, dia_chi) VALUES(ho_ten, sdt, email, dia_chi);
+SELECT LAST_INSERT_ID();
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `thong_tin_chuyen_xe`(IN ma_chuyen_xe int)
+BEGIN
+SELECT c.ma_chuyen_xe, t.diem_di, t.diem_den, c.thoi_gian_di, c.thoi_gian_den , t.quang_duong, x.ten_loai_xe, x.bien_so, x.so_ghe, c.ghe_trong, c.gia_ve
 FROM tuyenxe as t, chuyenxe as c, (SELECT xe.ma_xe, xe.ten_xe, loaixe.ten_loai_xe, xe.bien_so, xe.so_ghe FROM xe LEFT JOIN loaixe ON xe.ma_loai_xe = loaixe.ma_loai_xe) as x WHERE c.ma_chuyen_xe = ma_chuyen_xe and c.ma_tuyen_xe = t.ma_tuyen_xe and c.ma_xe = x.ma_xe;
-END $$
+END$$
 DELIMITER ;
 
-#PROCEDURE lấy vé xe
 DELIMITER $$
-CREATE PROCEDURE thong_tin_ve_xe(IN ma_chuyen_xe int, IN vi_tri_ghe int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `thong_tin_ve_xe`(IN ma_chuyen_xe int, IN vi_tri_ghe int)
 BEGIN
 SELECT r.*, v.ma_ve, v.vi_tri_ghe FROM (SELECT
 r2.*, loaixe.ten_loai_xe
@@ -134,23 +126,31 @@ FROM (SELECT
             FROM chuyenxe LEFT JOIN tuyenxe ON chuyenxe.ma_tuyen_xe = tuyenxe.ma_tuyen_xe)
 as r1 LEFT JOIN xe ON r1.ma_xe = xe.ma_xe) as r2 LEFT JOIN loaixe ON r2.ma_xe = loaixe.ma_loai_xe) as r, ve as v
 WHERE v.ma_chuyen_xe = ma_chuyen_xe and v.vi_tri_ghe = vi_tri_ghe and v.ma_chuyen_xe = r.ma_chuyen_xe;
-END $$
+END$$
 DELIMITER ;
 
-#PROCEDURE thêm khách hàng trả về id kh
 DELIMITER $$
-CREATE PROCEDURE themKhachHang(IN ho_ten varchar(50), IN sdt varchar(11),IN email varchar(50), IN dia_chi varchar(255))
-BEGIN
-INSERT INTO KhachHang(ho_ten, sdt, email, dia_chi) VALUES(ho_ten, sdt, email, dia_chi);
-SELECT LAST_INSERT_ID();
-END $$
+CREATE DEFINER=`root`@`localhost` EVENT `xoa_dat_sau_30p` ON SCHEDULE EVERY 10 MINUTE STARTS '2022-06-30 08:37:31' ON COMPLETION NOT PRESERVE ENABLE DO DELETE FROM datve where datve.thoi_gian_dat < (now() - INTERVAL 30 minute) and trang_thai = 'CHO_THANH_TOAN';
 DELIMITER ;
 
-#event xóa các vé đặt sau 30p không thanh toán
-DROP EVENT IF EXISTS `xoa_dat_sau_30p`;
-CREATE EVENT `xoa_dat_sau_30p` ON SCHEDULE EVERY 10 minute
-DO 
-DELETE FROM datve where datve.thoi_gian_dat < (now() - INTERVAL 30 minute) and trang_thai = 'CHO_THANH_TOAN';
+DELIMITER $$
+CREATE TRIGGER `cap_nhat_cho_trong` AFTER INSERT ON `datve`
+ FOR EACH ROW BEGIN
+UPDATE chuyenxe set chuyenxe.ghe_trong = chuyenxe.ghe_trong - 1 WHERE chuyenxe.ma_chuyen_xe IN (SELECT cx.ma_chuyen_xe FROM chuyenxe as cx, ve as v WHERE v.ma_ve = new.ma_ve and cx.ma_chuyen_xe = v.ma_chuyen_xe);
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER `tao_Ve_Tu_Dong` AFTER INSERT ON `chuyenxe`
+ FOR EACH ROW BEGIN
+DECLARE counter int ;
+SET counter = 2;
+    WHILE counter < (SELECT x.so_ghe FROM xe as x WHERE x.ma_xe = NEW.ma_xe) + 1 DO
+        INSERT INTO ve(ma_chuyen_xe, vi_tri_ghe) VALUES(NEW.ma_chuyen_xe, counter);
+        SET counter = counter + 1;
+    END WHILE ;
+END$$
+DELIMITER ;
 
 #insert database
 INSERT INTO TuyenXe(ten_tuyen_xe, diem_di, diem_den, quang_duong) VALUES('Tp.HCM đến Tiền Giang', 'Tp.HCM', 'Tiền Giang', 100);

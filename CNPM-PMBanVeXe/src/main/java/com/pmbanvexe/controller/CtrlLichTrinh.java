@@ -21,7 +21,6 @@ public class CtrlLichTrinh extends HttpServlet {
 
         request.setAttribute("tatCaChuyenXeDi", tatCaChuyenXeDi);
         request.setAttribute("tatCaChuyenXe", tatCaChuyenXe);
-        System.out.println(tatCaChuyenXeDi +", "+ tatCaChuyenXe);
         RequestDispatcher rd = request.getRequestDispatcher("/views/GDLichTrinh.jsp");
         rd.forward(request, response);
     }
