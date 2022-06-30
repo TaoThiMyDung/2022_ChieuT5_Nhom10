@@ -1,15 +1,12 @@
 package com.pmbanvexe.dao;
 
-import com.pmbanvexe.beans.DiemDung;
 import com.pmbanvexe.beans.KhachHang;
-import connect.Connect;
+import com.pmbanvexe.connect.Connect;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class KhachHangDao {
     public static int themKhachHang(String hoTen, String sdt, String email, String diaChi) {

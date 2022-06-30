@@ -10,7 +10,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 
 @WebServlet(name = "ChonCho", value = "/chon-cho-ngoi")
-public class CtrlChonCho extends HttpServlet {
+public class CtrlChonGhe extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int maChuyenXe = Integer.parseInt(request.getParameter("maChuyenXe"));
