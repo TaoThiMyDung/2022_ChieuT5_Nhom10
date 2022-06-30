@@ -47,77 +47,14 @@
     padding: 8px 16px;
     outline: none;
     font-size: 16px;
-<<<<<<< HEAD
-    font-weight: bold;
-    line-height: 25px;
-    position: relative;
-    align-items: center;
-}
-
-#header .header_right .header_right-item:hover {
-    color: #000;
-}
-
-#header .header_right .header_right-item i{
-    margin-right: 8px;
-}
-
-#header .header_right .login {
-    border-right: 2px solid #fff;
-}
-/*khung trang*/
-.khungtrang{
-    margin: 17.8%;
-    margin-top: 7%;
-}
-
-
-#trangKhung1 {
-    width: 100%;
-    height: 500px;
-    margin: -1px;
-    margin-top: 0px;
-    display: none;
-}
-
-.khungtrang .fa-chevron-circle-left {
-    position: absolute;
-    z-index: 2;
-    color: #1fb5d4;
-    font-size: 270%;
-    margin-left: 2%;
-    margin-top: 10%;
-=======
     width: 400px;
->>>>>>> luanBranch
 }
 #content #Search form i {
     font-size: 20px;
     cursor: pointer;
     position: absolute;
-<<<<<<< HEAD
-    z-index: 2;
-    color: #1fb5d4;
-    font-size: 270%;
-    margin-left: -6%;
-    margin-top: 10%;
-}
-
-.khungtrang .fa-chevron-circle-right:hover {
-    cursor: pointer;
-}
-
-.khungtrang .fa-chevron-circle-right:hover #trangKhung1 {
-    cursor: pointer;
-}
-/*tim kiem*/
-#Search{
-margin-left: 15%;
-    margin-top: -15%;
-=======
     top: 25%;
     right: 10px;
->>>>>>> luanBranch
 }
 #content .schedule-scroll .groups {
     margin-top: 16px;
@@ -153,30 +90,6 @@ margin-left: 15%;
     background-color: #fff7f5;
     color: #f15a24;
 }
-<<<<<<< HEAD
-.schedule-scroll .schedule-table thead {
-    font-size: 18px;
-}
-.schedule-scroll .schedule-table .title{
-    color: orangered;
-}
-.schedule-scroll .schedule-table .time-detail{
-    color: green;
-}
-.schedule-scroll .schedule-table .title{
-font-family: SFProText;
-font-size: 16px;
-font-weight: 600;
-font-stretch: normal;
-font-style: normal;
-line-height: normal;
-letter-spacing: normal;
-color: #f15a24;
-}
-.schedule-scroll .schedule-table .item{
-    height: 45px;
-}
-=======
 #content .schedule-scroll table .title th {
     padding: 0 10px;
 }
@@ -206,4 +119,3 @@ color: #f15a24;
 #content .schedule-scroll table .end .buy-btn:hover {
     background-color: #f15a24;
 }
->>>>>>> luanBranch
