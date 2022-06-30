@@ -13,4 +13,10 @@ public class DvXe {
     public static List<DiemDung> layCacDiemDungCuaChuyenXe(int maChuyenXe, String loaiDiemDung) {
         return ChuyenXeDao.layCacDiemDungCuaChuyenXe(maChuyenXe, loaiDiemDung);
     }
+    public static List<String> layTatCaTuyenXeDi() {
+        return  ChuyenXeDao.layTatCaTuyenXeDi();
+    }
+    public static List<ThongTinChuyenXe> layTatCaChuyenXe() {
+        return  ChuyenXeDao.latTatCaChuyenXe();
+    }
 }

@@ -1,100 +1,53 @@
-* {
-    padding: 0;
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-a {
-    text-decoration: none;
-}
-
-li {
-    list-style-type: none;
-}
-
-.my-hover:before {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0; right: 0; bottom: 0; left: 0;
-    inset: 0 0 0 0;
-    background-color: hsl(200 100% 80%);
-    border-radius: 5px;
-    transform: scaleX(0);
-    transform-origin: bottom right;
-    animation: fade-in forwards;
-    z-index: -1;
-    transition: transform .3s ease;
-}
-.my-hover:hover:before {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-}
-
-#header {
-    display: flex;
-    align-content: center;
-    justify-content: space-between;
-    height: 60px;
-    background-color: #524FEC;
-    margin: 8px;
-    border-radius: 5px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    z-index: 3;
-}
-
-#header .header_left {
-    display: flex;
-    align-items: center;
-    color: #fff;
-    padding: 8px;
-}
-
-#header .header_left img {
-    width: 50px;
-    height: 50px;
-}
-
-#header .header_left h3 {
-    margin-left: 8px;
-}
-
-#header .header_center {
-    display: flex;
-    align-items: center;
-    padding: 8px;
-}
-
-#header .header_center li {
-    padding: 8px;
-    margin: 0 4px;
+#content .khungtrang{
+    width: 100%;
+    text-align: center;
     position: relative;
 }
-
-#header .header_center li:hover a {
-    color: #000;
+#content .khungtrang #trangKhung1{
+    display: none;
 }
-
-#header .header_center li a {
+#content .khungtrang img{
+    width: 98vw;
+}
+#content .khungtrang i{
+    position: absolute;
+    top: calc(50% - 18px);
+    font-size: 36px;
     color: #fff;
+    cursor: pointer;
+}
+#content .khungtrang i.fa-chevron-circle-left {
+    left: 10px;
+}
+#content .khungtrang i.fa-chevron-circle-right {
+    right: 10px;
+}
+#content #Search {
+    width: 100%;
+    margin-top: 16px;
+    text-align: center;
+}
+#content #Search form {
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+}
+#content #Search .form-group {
+    display: inline-block;
+    position: relative;
+}
+#content #Search .form-group + .form-group {
+    margin-left: 20px;
+}
+#content #Search .form-group label {
     font-size: 16px;
     font-weight: bold;
 }
-
-#header .header_right {
-    display: flex;
-    align-items: center;
-    padding: 8px;
-}
-
-#header .header_right .header_right-item {
-    display: flex;
-    color: #fff;
-    padding: 8px;
+#content #Search .form-group input {
+    padding: 8px 16px;
+    outline: none;
     font-size: 16px;
+<<<<<<< HEAD
     font-weight: bold;
     line-height: 25px;
     position: relative;
@@ -134,14 +87,15 @@ li {
     font-size: 270%;
     margin-left: 2%;
     margin-top: 10%;
+=======
+    width: 400px;
+>>>>>>> luanBranch
 }
-
-.khungtrang .fa-chevron-circle-left:hover {
+#content #Search form i {
+    font-size: 20px;
     cursor: pointer;
-}
-
-.khungtrang .fa-chevron-circle-right {
     position: absolute;
+<<<<<<< HEAD
     z-index: 2;
     color: #1fb5d4;
     font-size: 270%;
@@ -160,65 +114,46 @@ li {
 #Search{
 margin-left: 15%;
     margin-top: -15%;
+=======
+    top: 25%;
+    right: 10px;
+>>>>>>> luanBranch
 }
-
-#Search .start{
-    width: 35%;
-    font-size: 16px;
-    border-radius: 20px;
-    border: 1px solid #bdbdbd;
-    padding: 0 30px 0 14px;
-    margin: 0;
-
-}
-/*lich*/
-.schedule-scroll {
-    width: 100%;
-    overflow: scroll;
+#content .schedule-scroll .groups {
+    margin-top: 16px;
     display: flex;
     justify-content: center;
-    margin-top: 16px;
-}
-.schedule-table {
-    max-width: 936px;
-    width: inherit;
-    height: 714px;
-    margin-bottom: 24px;
-}
-.schedule-container table {
-    width: 936px;
-    margin: 0;
-}
-.groups, .schedule-container thead {
-    width: 936px;
-}
-.schedule-container .table-head {
+    align-items: center;
     width: 100%;
-    height: 42px;
-    border-radius: 8px;
-    border: 2px solid #d5d5d5;
+}
+#content .schedule-scroll {
+    width: 96%;
+    max-height: 500px;
+    overflow: scroll;
+    position: relative;
+}
+#content .schedule-scroll .groups table {
+    border: 1px solid #d5d5d5;
+    width: calc(96% + 4px);
+    border-spacing: 0;
+}
+#content .schedule-scroll .groups table .table-head {
+    position: sticky;
     background-color: #f6f6f6;
-    font-size: 18px;
-
+    height: 50px;
+    text-align: center;
+    top: 0;
 }
-.schedule-container .table-head th {
-    height: 16px;
-    font-size: 14px;
-    font-weight: 700;
-    color: #141414;
-    padding-left: 24px;
+#content .schedule-scroll .groups table tbody {
+    text-align: center;
 }
-.schedule-scroll .schedule-table .group-table {
-    width: 100%;
-    border: 1px solid #000;
-}
-.schedule-scroll .schedule-table th {
-
+#content .schedule-scroll table .title {
     text-align: left;
+    height: 50px;
+    background-color: #fff7f5;
+    color: #f15a24;
 }
-.schedule-scroll .schedule-table td {
-    text-align: left;
-}
+<<<<<<< HEAD
 .schedule-scroll .schedule-table thead {
     font-size: 18px;
 }
@@ -241,3 +176,34 @@ color: #f15a24;
 .schedule-scroll .schedule-table .item{
     height: 45px;
 }
+=======
+#content .schedule-scroll table .title th {
+    padding: 0 10px;
+}
+#content .schedule-scroll table .schedule-route-name {
+    text-align: left;
+    padding: 0 30px;
+}
+#content .schedule-scroll table .schedule-route-name button {
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+}
+#content .schedule-scroll table .item {
+    height: 40px;
+}
+#content .schedule-scroll table .time button {
+    color: #009344;
+}
+
+#content .schedule-scroll table .end .buy-btn {
+    border-radius: 5px;
+    padding: 4px 8px;
+    border: none;
+    outline: 1px solid #000;
+}
+#content .schedule-scroll table .end .buy-btn:hover {
+    background-color: #f15a24;
+}
+>>>>>>> luanBranch

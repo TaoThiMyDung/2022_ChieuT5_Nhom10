@@ -1,7 +1,7 @@
 package com.pmbanvexe.dao;
 
 import com.pmbanvexe.beans.thanhtoan;
-import connect.DBConnect;
+import com.pmbanvexe.connect.DBConnect;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

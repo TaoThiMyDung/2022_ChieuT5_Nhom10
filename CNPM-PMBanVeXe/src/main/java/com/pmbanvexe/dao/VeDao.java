@@ -1,7 +1,7 @@
 package com.pmbanvexe.dao;
 
 import com.pmbanvexe.beans.ThongTinVeXe;
-import connect.Connect;
+import com.pmbanvexe.connect.Connect;
 
 import java.sql.*;
 

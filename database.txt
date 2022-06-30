@@ -82,6 +82,7 @@ CREATE TABLE DatVe (
     ma_diem_don int,
     ma_diem_tra int,
     trang_thai varchar(20) DEFAULT 'CHO_THANH_TOAN',
+    thoi_gian_dat datetime DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY fk_datve_ve (ma_ve) REFERENCES Ve(ma_ve),
     FOREIGN KEY fk_datve_kh (ma_kh) REFERENCES KhachHang(ma_kh),
     FOREIGN KEY fk_datve_diemdon (ma_diem_don) REFERENCES DiemDon(ma_diem_don),
@@ -144,6 +145,12 @@ INSERT INTO KhachHang(ho_ten, sdt, email, dia_chi) VALUES(ho_ten, sdt, email, di
 SELECT LAST_INSERT_ID();
 END $$
 DELIMITER ;
+
+#event xóa các vé đặt sau 30p không thanh toán
+DROP EVENT IF EXISTS `xoa_dat_sau_30p`;
+CREATE EVENT `xoa_dat_sau_30p` ON SCHEDULE EVERY 10 minute
+DO 
+DELETE FROM datve where datve.thoi_gian_dat < (now() - INTERVAL 30 minute) and trang_thai = 'CHO_THANH_TOAN';
 
 #insert database
 INSERT INTO TuyenXe(ten_tuyen_xe, diem_di, diem_den, quang_duong) VALUES('Tp.HCM đến Tiền Giang', 'Tp.HCM', 'Tiền Giang', 100);
